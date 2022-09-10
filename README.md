@@ -7,21 +7,77 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Stake-test-app
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Stake - The modern way for anyone to invest in real estate:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Simple, fast croud funding platform.
+- Retrieve large number of properties.
+- Invest in prime rental properties on MENA’s leading real estate investment platform, from only AED 500.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technology used
+- `Laravel version 9` for the application.
+- `Laravel sail` a light-weight command-line interface for interacting with Laravel's default Docker development environment.
+- `Laravel Sanctum` provides a featherweight authentication system for      token based APIs.
 
-## Learning Laravel
+## Installation
+
+> **Note:** Require the `Docker Desktop` installed on your computer file sharing sould be turned on for the application root path from `preference->resources->file sharing`
+
+```sh
+Clone repo
+cd stake-test
+Composer install
+```
+After the vendor folder has been created, you can navigate to the application directory and start Laravel Sail. Laravel Sail provides a simple command-line interface for interacting with Laravel's default Docker configuration:
+```sh
+./vendor/bin/sail up
+```
+Once the application's Docker containers have been started, you can access the application in your web browser or postman app at: http://localhost.
+
+However, instead of repeatedly typing vendor/bin/sail to execute Sail commands, you may wish to configure a shell alias that allows you to execute Sail's commands more easily:
+```sh
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
+Once the shell alias has been configured, you may execute Sail commands by simply typing sail. for eg
+
+```sh
+sail up
+sail php artisan migrate
+...
+```
+- Migration
+
+The `migrate:fresh` with `seed` command will drop all tables from the database and then execute the migrate  and seed command:
+
+```sh
+php artisan migrate:fresh --seed
+```
+> **Note:** If any connection refuced issue happen, you need to run `docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)` to get ports which running docker services,update relevent ports info on env
+
+## API
+```sh
+host http://localhost/api/v1
+```
+Resources
+-  GET /properties - Retrieve all properties
+You can pass query params to filter as `?size=''&campaign=''&...`
+- POST /investments - To make an investment
+payload format while POST 
+```sh
+{
+    "user_id":1,
+    "property_id":1,
+    "campaign_id":1
+}
+```
+
+
+
+> **Note:** If you are explicitly whitelisting headers, you must include `Origin` or requests will fail to be recognized as CORS.
+
+
+
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
