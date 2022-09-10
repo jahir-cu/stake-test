@@ -20,4 +20,18 @@ class Campaign extends Model
         'investment_multiple',
         'status'
     ];
+    /**
+     * Get the images for the blog post.
+     */
+    public function investments()
+    {
+        return $this->belongsTo(Investment::class, 'campaign_id', 'id');
+    }
+    /**
+     * Get the images for the blog post.
+     */
+    public function properties()
+    {
+        return $this->belongsTo(Properties::class, 'campaign_id', 'id');
+    }
 }

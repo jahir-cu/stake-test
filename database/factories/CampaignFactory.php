@@ -18,7 +18,7 @@ class CampaignFactory extends Factory
     {
         return [
             'campaign_name' => fake()->domainWord(),
-            'target_amount' => fake()->randomNumber(8, true),
+            'target_amount' => fake()->randomFloat(8, 10, 3000),
             'investment_multiple' => fake()->randomFloat(1, 20, 30),
             'status' => fake()->numberBetween(0, 1)
         ];

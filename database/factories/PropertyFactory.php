@@ -20,7 +20,7 @@ class PropertyFactory extends Factory
             'property_name' => fake()->domainWord(),
             // 'image' => fake()->imageUrl(640, 480, 'animals', true),
             'property_size' => fake()->randomFloat(2, 10, 3000),
-            // 'target_amount' => fake()->randomNumber(8, true),
+            'price' => fake()->randomFloat(2, 10, 3000),
             'property_type' => fake()->sentence(2),
             'bedrooms' => fake()->numberBetween(1, 12),
             'bathrooms' => fake()->numberBetween(1, 6),

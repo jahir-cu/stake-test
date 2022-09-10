@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->string('campaign_name', 100);
-            $table->bigInteger('target_amount');
+            $table->double('target_amount', 8, 2);
             $table->float('investment_multiple', 6, 2);
             $table->integer('status');
             $table->timestamps();

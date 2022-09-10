@@ -22,3 +22,7 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 .DS_Store
+.DS_Store
+app/.DS_Store
+app/Http/.DS_Store
+database/.DS_Store

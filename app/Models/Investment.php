@@ -15,8 +15,8 @@ class Investment extends Model
      */
     protected $fillable = [
         'user_id',
-        'property_id',
         'campaign_id',
-        'property_campaign_id'
+        'property_id',
+        'amount_invested'
     ];
 }

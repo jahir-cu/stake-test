@@ -18,4 +18,19 @@ class PropertiesCampaign extends Model
         'property_id',
         'campaign_id'
     ];
+
+    /**
+     * Get the properties that owns the campaign.
+     */
+    public function properties()
+    {
+        return $this->belongsTo(Property::class, 'property_id', 'id');
+    }
+    /**
+     * Get the properties that owns the campaign.
+     */
+    public function campaigns()
+    {
+        return $this->belongsTo(Campaign::class, 'campaign_id', 'id');
+    }
 }
