@@ -17,6 +17,9 @@ use App\Http\Controllers\PropertyController;
 */
 
 Route::group(['prefix' => 'v1/'], function () {
+    Route::get('/',function () {
+        return response()->json(['application' => 'stake, laravel 9.'], 200);
+    } );
     
     Route::apiResource('users', UserController::class);
     
