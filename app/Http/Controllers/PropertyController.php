@@ -24,22 +24,14 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties =DB::table('properties')
-        ->join('images', function ($join) {
-            $join->on('properties.id', '=', 'images.property_id');
-        })
-        ->join('locations', function ($join) {
-            $join->on('properties.location_id', '=', 'locations.id');
-        })
-        ->get();
 
 
-        // $properties = Property::find(2)->images;
+        $properties = Property::with(['images'])->get();
 
         // Property::select('properties.*')->join('images', 'images.property_id', '=', 'properties.id');
         
         
-        dd(DB::getQueryLog());
+        // dd(DB::getQueryLog());
         return response()->json(['status' => 1, 'data' => $properties], 200);
     }
 
