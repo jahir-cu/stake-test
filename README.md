@@ -66,6 +66,8 @@ php artisan migrate:fresh --seed
 ```sh
 host http://localhost/api/v1
 ```
+> **Note:** A phpMyAdmin setup on `http://localhost:8001` as well.
+
 Resources
 -  GET /properties - Retrieve all properties
 You can pass query params to filter as `?locationId=''&propertySize=''&campaign=''&...`
