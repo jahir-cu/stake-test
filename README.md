@@ -74,7 +74,8 @@ payload format while POST
 ```sh
 {
     "user_id":1,
-    "property_id":1
+    "property_id":1,
+    "amount_invested":50000
 }
 ```
 
