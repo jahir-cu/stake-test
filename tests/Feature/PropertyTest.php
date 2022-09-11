@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Models\Property;
 
 class PropertyTest extends TestCase
 {
@@ -18,7 +17,6 @@ class PropertyTest extends TestCase
     {
         $response = $this->get('api/v1/properties');
         $response->assertStatus(200);
-        // $this->assertEquals(1, count($response->json()));
     }
     /**
      * A basic functional test example to invest.

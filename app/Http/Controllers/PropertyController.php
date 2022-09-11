@@ -34,7 +34,6 @@ class PropertyController extends Controller
         $propertyType = '';
         $locationId = '';
         $campaignId = '';
-        $totalInvestments = '';
         if ($request->has('propertyId'))
         {
             $propertyId = $request->input('propertyId');
@@ -70,10 +69,6 @@ class PropertyController extends Controller
         if ($request->has('campaignId'))
         {
             $campaignId = $request->input('campaignId');
-        }
-        if ($request->has('totalInvestments'))
-        {
-            $totalInvestments = $request->input('totalInvestments');
         }
         $properties = Property::with(['location', 'campaigns', 'image', 'investmentStats']);
         $properties = $properties->whereHas('location', function ($q) use ($locationId)

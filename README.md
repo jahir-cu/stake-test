@@ -70,7 +70,7 @@ host http://localhost/api/v1
 
 Resources
 -  GET /properties - Retrieve all properties
-You can pass query params to filter as `?locationId=''&propertySize=''&campaign=''&...`
+You can pass query params to filter as `?locationId=''&propertySize=''&campaignId=''&bedrooms=''&bathrooms=''&bedrooms=''&propertyType=''&...`
 - POST /investments - To make an investment
 payload format while POST 
 ```sh
