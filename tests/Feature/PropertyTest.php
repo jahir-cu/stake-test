@@ -23,15 +23,11 @@ class PropertyTest extends TestCase
      *
      * @return void
      */
-    // public function test_making_an_invest()
-    // {
-    //     $response = $this->postJson('/api/v1/properties', ['user_id' => 1, 'camapaign_id'=>1]);
- 
-    //     $response
-    //         ->assertStatus(201)
-    //         ->assertJson([
-    //             'created' => true,
-    //         ]);
-    // }
+    public function test_making_an_invest()
+    {
+        $response = $this->postJson('/api/v1/investments', ['user_id' => 1, 'property_id'=>3 ,"amount_invested"=>11263.2]);
+        $response
+            ->assertStatus(201);
+    }
     
 }
