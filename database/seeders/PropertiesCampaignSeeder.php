@@ -16,9 +16,13 @@ class PropertiesCampaignSeeder extends Seeder
      */
     public function run()
     {
+        // PropertiesCampaign::factory(5)->state(new Sequence(
+        //     ['campaign_id' => 1]
+        // ))->create();
+
         PropertiesCampaign::factory()
                 ->count(5)
-                ->sequence(fn ($sequence) => ['property_id' => $sequence->index+1,  'campaign_id' => [1,2]])
+                ->sequence(fn ($sequence) => ['property_id' => $sequence->index+1,  'campaign_id' => 1])
                 ->create();
     }
 }
