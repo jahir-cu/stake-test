@@ -56,19 +56,25 @@ php artisan migrate:fresh --seed
 > **Note:** If any connection refuced issue happen, you need to run `docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)` to get ports which running docker services,update relevent ports info on env
 
 ## API
+- Guest user able to see the list of the properties and make investments.
+- The application model work as follows
+```sh
+- user can make investments on properties as per investment multiple of active campaign.
+- a property should have one active campaign.
+- a campaign can have many properties.
+```
 ```sh
 host http://localhost/api/v1
 ```
 Resources
 -  GET /properties - Retrieve all properties
-You can pass query params to filter as `?size=''&campaign=''&...`
+You can pass query params to filter as `?locationId=''&propertySize=''&campaign=''&...`
 - POST /investments - To make an investment
 payload format while POST 
 ```sh
 {
     "user_id":1,
-    "property_id":1,
-    "campaign_id":1
+    "property_id":1
 }
 ```
 

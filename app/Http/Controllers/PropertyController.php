@@ -76,23 +76,6 @@ class PropertyController extends Controller
             $totalInvestments = $request->input('totalInvestments');
         }
         $properties = Property::with(['location', 'campaigns', 'image', 'investmentStats']);
-
-        // $properties =$properties->with([
-        //     'location' =>
-        //     fn($query) => $query
-        //     ->where('location_id', $locationId)
-        // ])
-        //    ->whereHas('location',
-        //     fn($query) => $query
-        //     ->where('location_id', $locationId)
-        // );
-        // $properties =$properties->with('location')->where(function($query) use ($locationId) {
-        //     $query->whereHas('location', function($query) use ($locationId) {
-        //         if($locationId){
-        //             $query->where('id', 10);
-        //         }
-        //    });
-        // });
         $properties = $properties->whereHas('location', function ($q) use ($locationId)
         {
             if ($locationId)
