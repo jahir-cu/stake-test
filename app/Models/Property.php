@@ -39,14 +39,22 @@ class Property extends Model
      */
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class, 'property_id', 'id');
     }
     /**
-     * Get the image for the property.
+     * Get the investments for the property.
+     */
+    public function investments()
+    {
+        return $this->hasMany(Investment::class, 'property_id', 'id');
+    }
+    
+    /**
+     * Get the main image for the property.
      */
     public function image()
     {
-        return $this->hasMany(Image::class)->limit(1);
+        return $this->hasOne(Image::class, 'property_id', 'id');
     }
     /**
      * Get the campaigns for the property.
@@ -54,49 +62,21 @@ class Property extends Model
     public function campaigns()
     {
         return $this->hasOneThrough(Campaign::class, PropertiesCampaign::class, 'property_id', 'id', 'id', 'campaign_id');
-        // return $this->hasOneThrough(PropertiesCampaign::class, 'campaign_id', 'property_id');
-    }
-
-    // return $this->hasOneThrough(
-    //     Owner::class,
-    //     Car::class,
-    //     'mechanic_id', // Foreign key on the cars table...
-    //     'car_id', // Foreign key on the owners table...
-    //     'id', // Local key on the mechanics table...
-    //     'id' // Local key on the cars table...
-    // );
-
-    
-    /**
-     * Get the investments for the property.
-     */
-    public function investments()
-    {
-        return $this->hasManyThrough(Investment::class, PropertiesCampaign::class, 'property_id', 'campaign_id', 'id', 'property_id' );
     }
     /**
      * Get the investmentsStats for the property.
      */
-    public function investmentsStats()
+    public function investmentStats()
     {
-        return $this->hasManyThrough(Investment::class, PropertiesCampaign::class, 'property_id', 'campaign_id', 'id', 'property_id' )
-        ->selectRaw('count(1) as total_investments, sum(amount_invested) as total_amount_invested')
-        ->groupBy('investments.campaign_id');
+        $target=$this->campaigns->target_amount?$this->campaigns->target_amount:0;
+        return $this->hasMany(Investment::class, 'property_id', 'id')
+            ->select('property_id',
+            DB::raw('count(1) as total_investments,
+            sum(amount_invested) as total_amount_invested,
+            round(((SUM(amount_invested)/'.DB::raw($target).') * 100), 2) as amount_raised'
+            ))
+            ->groupBy('investments.property_id');
     }
-    /**
-     * Get the investmentsStats for the property.
-     */
-    public function investmentsRaised()
-    {
-        $target=$this->campaigns->target_amount;
-        // if($target > 0)
-        // {}
-
-        return $this->hasManyThrough(Investment::class, PropertiesCampaign::class, 'property_id', 'campaign_id', 'id', 'property_id' )
-        ->selectRaw('count(1) as total_investments, sum(amount_invested) as total_amount_invested, round(((SUM(amount_invested)/'.DB::raw($target).') * 100), 2) as amount_raised')
-        ->groupBy('investments.campaign_id');
-    }
-
 }
 // return $this->hasManyThrough(
 //     Investment::class,
@@ -106,3 +86,11 @@ class Property extends Model
 //     'id', // Local key on the property table...
 //     'id' // Local key on the PropertiesCampaign table...
 // );
+// return $this->hasOneThrough(
+    //     Owner::class,
+    //     Car::class,
+    //     'mechanic_id', // Foreign key on the cars table...
+    //     'car_id', // Foreign key on the owners table...
+    //     'id', // Local key on the mechanics table...
+    //     'id' // Local key on the cars table...
+    // );

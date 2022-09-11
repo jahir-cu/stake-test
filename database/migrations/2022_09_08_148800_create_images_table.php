@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('image_name', 100);
             $table->string('image_url', 100);
-            $table->foreignId('property_id')->constrained();
+            //$table->foreignId('property_id')->constrained();
+            $table->unsignedBigInteger('property_id');
+            $table->foreign('property_id')->references('id')->on('properties');
             $table->timestamps();
         });
     }

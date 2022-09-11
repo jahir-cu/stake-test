@@ -29,7 +29,7 @@ class PropertiesCampaign extends Model
     /**
      * Get the properties that owns the campaign.
      */
-    public function campaigns()
+    public function campaign()
     {
         return $this->belongsTo(Campaign::class, 'campaign_id', 'id');
     }

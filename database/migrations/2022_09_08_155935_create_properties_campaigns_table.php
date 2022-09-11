@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('properties_campaigns', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('property_id')->constrained();
+            $table->unsignedBigInteger('property_id');
+            $table->foreign('property_id')->references('id')->on('properties');
             $table->foreignId('campaign_id')->constrained();
             $table->timestamps();
         });

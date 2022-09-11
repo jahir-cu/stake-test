@@ -32,6 +32,6 @@ class Campaign extends Model
      */
     public function properties()
     {
-        return $this->belongsTo(Properties::class, 'campaign_id', 'id');
+        return $this->belongsTo(Property::class, 'campaign_id', 'id');
     }
 }

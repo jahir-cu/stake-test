@@ -15,8 +15,16 @@ class Investment extends Model
      */
     protected $fillable = [
         'user_id',
-        'campaign_id',
+        // 'campaign_id',
         'property_id',
         'amount_invested'
     ];
+
+    /**
+     * Get the images for the blog post.
+     */
+    public function properties()
+    {
+        return $this->belongsTo(Property::class, 'property_id', 'property_id');
+    }
 }

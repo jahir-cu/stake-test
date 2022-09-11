@@ -42,7 +42,7 @@ class Handler extends ExceptionHandler
      * @return void
      */
     public function register()
-    {
+    {//renderable
         $this->renderable(function (Throwable $exception) {
             if (method_exists($exception, 'getStatusCode')) {
                 $statusCode = $exception->getStatusCode();
@@ -69,7 +69,7 @@ class Handler extends ExceptionHandler
                     $response['errors'] = $exception->original['errors'];
                     break;
                 default:
-                    $response['message'] = ($statusCode == 500) ? 'Whoops, looks like something went wrong' : $exception->getMessage();
+                    $response['message'] = $statusCode ? $exception->getMessage() : 'Whoops, looks like something went wrong';
                     break;
             }
         

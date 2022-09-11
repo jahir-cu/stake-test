@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('property_size', 8, 2);
             $table->integer('bedrooms');
             $table->integer('bathrooms');
-            $table->double('price', 8, 2);
+            $table->double('price', 10, 2);
             $table->foreignId('location_id')->constrained();
             // $table->decimal('percentage_raised', 4, 2);
             // $table->bigInteger('target_amount');
